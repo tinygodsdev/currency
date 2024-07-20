@@ -27,7 +27,7 @@ const (
 	ZAR = "ZAR"
 )
 
-func getCurrencyMapping() map[string]string {
+func Map() map[string]string {
 	return map[string]string{
 		"₽":    RUB,
 		"руб.": RUB,
@@ -97,8 +97,8 @@ func getCurrencyMapping() map[string]string {
 	}
 }
 
-// NormalizeCurrency normalizes a currency string to a standard currency code
-func NormalizeCurrency(currency string, customMapping map[string]string) (string, bool) {
+// Normalize normalizes a currency string to a standard currency code
+func Normalize(currency string, customMapping map[string]string) (string, bool) {
 	// if custom mapping is provided, use it
 	if customMapping != nil {
 		if v, ok := customMapping[currency]; ok {
@@ -107,7 +107,7 @@ func NormalizeCurrency(currency string, customMapping map[string]string) (string
 	}
 
 	// otherwise use the default mapping
-	mapping := getCurrencyMapping()
+	mapping := Map()
 	if v, ok := mapping[strings.ToLower(currency)]; ok {
 		return v, true
 	}
@@ -115,9 +115,9 @@ func NormalizeCurrency(currency string, customMapping map[string]string) (string
 	return currency, false
 }
 
-// SupportedCurrencies returns a list of supported currencies
-func SupportedCurrencies() []string {
-	mapping := getCurrencyMapping()
+// List returns a list of supported currencies
+func List() []string {
+	mapping := Map()
 	currencies := make([]string, 0, len(mapping))
 	seen := make(map[string]bool)
 

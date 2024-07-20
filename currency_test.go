@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestNormalizeCurrency(t *testing.T) {
+func TestNormalize(t *testing.T) {
 	tests := []struct {
 		input         string
 		customMapping map[string]string
@@ -26,7 +26,7 @@ func TestNormalizeCurrency(t *testing.T) {
 	}
 
 	for _, test := range tests {
-		result, ok := NormalizeCurrency(test.input, test.customMapping)
+		result, ok := Normalize(test.input, test.customMapping)
 		if result != test.expected || ok != test.expectedOK {
 			t.Errorf("NormalizeCurrency(%q, %v) = %q, %v; want %q, %v",
 				test.input, test.customMapping, result, ok, test.expected, test.expectedOK)
@@ -34,13 +34,13 @@ func TestNormalizeCurrency(t *testing.T) {
 	}
 }
 
-func TestSupportedCurrencies(t *testing.T) {
+func TestList(t *testing.T) {
 	expected := []string{
 		"RUB", "EUR", "USD", "GBP", "ITL", "JPY", "KRW", "INR", "UAH", "ILS",
 		"AUD", "CAD", "CHF", "CNY", "HKD", "NZD", "SEK", "SGD", "MXN", "NOK", "BRL", "ZAR",
 	}
 
-	result := SupportedCurrencies()
+	result := List()
 
 	if len(result) != len(expected) {
 		t.Errorf("SupportedCurrencies() = %d currencies; want %d", len(result), len(expected))

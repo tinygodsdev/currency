@@ -11,7 +11,7 @@ To install the package, run:
 
 ### Normalizing Currency Symbols
 
-You can use the NormalizeCurrency function to normalize various currency symbols to their standard ISO 4217 codes. The function also supports custom mappings.
+You can use the Normalize function to normalize various currency symbols to their standard ISO 4217 codes. The function also supports custom mappings.
 
 ```go
 
@@ -28,16 +28,16 @@ func main() {
         "custom": "CSTM",
     }
 
-    fmt.Println(currency.NormalizeCurrency("₽", nil))           // ("RUB", true)
-    fmt.Println(currency.NormalizeCurrency("usd", customMapping))   // ("USDT", true)
-    fmt.Println(currency.NormalizeCurrency("custom", customMapping)) // ("CSTM", true)
-    fmt.Println(currency.NormalizeCurrency("unknown", nil))     // ("unknown", false)
+    fmt.Println(currency.Normalize("₽", nil))                // ("RUB", true)
+    fmt.Println(currency.Normalize("usd", customMapping))    // ("USDT", true)
+    fmt.Println(currency.Normalize("custom", customMapping)) // ("CSTM", true)
+    fmt.Println(currency.Normalize("unknown", nil))          // ("unknown", false)
 }
 ```
 
 ### Listing Supported Currencies
 
-You can use the SupportedCurrencies function to get a list of all supported currencies.
+You can use the List function to get a list of all supported currencies.
 
 ```go
 
@@ -49,13 +49,13 @@ import (
 )
 
 func main() {
-    fmt.Println(currency.SupportedCurrencies())
+    fmt.Println(currency.List())
 }
 ```
 
 ### Custom Mapping
 
-If you have custom currency symbols or codes, you can pass them to the NormalizeCurrency function using the customMapping parameter. The custom mapping takes precedence over the default mapping.
+If you have custom currency symbols or codes, you can pass them to the Normalize function using the customMapping parameter. The custom mapping takes precedence over the default mapping.
 
 ## Contributing
 
