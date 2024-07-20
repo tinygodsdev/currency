@@ -9,7 +9,7 @@ To install the package, run:
 
 ## Usage
 
-Normalizing Currency Symbols
+### Normalizing Currency Symbols
 
 You can use the NormalizeCurrency function to normalize various currency symbols to their standard ISO 4217 codes. The function also supports custom mappings.
 
@@ -35,7 +35,7 @@ func main() {
 }
 ```
 
-## Listing Supported Currencies
+### Listing Supported Currencies
 
 You can use the SupportedCurrencies function to get a list of all supported currencies.
 
@@ -53,7 +53,7 @@ func main() {
 }
 ```
 
-## Custom Mapping
+### Custom Mapping
 
 If you have custom currency symbols or codes, you can pass them to the NormalizeCurrency function using the customMapping parameter. The custom mapping takes precedence over the default mapping.
 
