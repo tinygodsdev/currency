@@ -13,6 +13,18 @@ const (
 	INR = "INR"
 	UAH = "UAH"
 	ILS = "ILS"
+	AUD = "AUD"
+	CAD = "CAD"
+	CHF = "CHF"
+	CNY = "CNY"
+	HKD = "HKD"
+	NZD = "NZD"
+	SEK = "SEK"
+	SGD = "SGD"
+	MXN = "MXN"
+	NOK = "NOK"
+	BRL = "BRL"
+	ZAR = "ZAR"
 )
 
 func getCurrencyMapping() map[string]string {
@@ -51,9 +63,41 @@ func getCurrencyMapping() map[string]string {
 
 		"₪":   ILS,
 		"ils": ILS,
+
+		"a$":  AUD,
+		"aud": AUD,
+
+		"c$":  CAD,
+		"cad": CAD,
+
+		"chf": CHF,
+
+		"cn¥": CNY,
+		"cny": CNY,
+
+		"hk$": HKD,
+		"hkd": HKD,
+
+		"nz$": NZD,
+		"nzd": NZD,
+
+		"sek": SEK,
+
+		"sgd": SGD,
+
+		"mx$": MXN,
+		"mxn": MXN,
+
+		"nok": NOK,
+
+		"r$":  BRL,
+		"brl": BRL,
+
+		"zar": ZAR,
 	}
 }
 
+// NormalizeCurrency normalizes a currency string to a standard currency code
 func NormalizeCurrency(currency string, customMapping map[string]string) (string, bool) {
 	// if custom mapping is provided, use it
 	if customMapping != nil {
@@ -62,11 +106,27 @@ func NormalizeCurrency(currency string, customMapping map[string]string) (string
 		}
 	}
 
-	// if no custom mapping is provided, use the default mapping
+	// otherwise use the default mapping
 	mapping := getCurrencyMapping()
 	if v, ok := mapping[strings.ToLower(currency)]; ok {
 		return v, true
 	}
 
 	return currency, false
+}
+
+// SupportedCurrencies returns a list of supported currencies
+func SupportedCurrencies() []string {
+	mapping := getCurrencyMapping()
+	currencies := make([]string, 0, len(mapping))
+	seen := make(map[string]bool)
+
+	for _, currency := range mapping {
+		if !seen[currency] {
+			seen[currency] = true
+			currencies = append(currencies, currency)
+		}
+	}
+
+	return currencies
 }
